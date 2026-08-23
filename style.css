@@ -348,13 +348,28 @@ p {
   padding: var(--space-12) 0 var(--space-16);
 }
 
-.works__grid {
+.works__scroll {
   max-width: var(--maxw);
   margin: 0 auto;
   padding: 0 var(--gutter);
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
   gap: clamp(1.5rem, 3vw, 2.5rem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.works__scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.project {
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  width: clamp(240px, 22vw, 320px);
 }
 
 .project__link {
@@ -363,7 +378,7 @@ p {
 
 .project__visual {
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 9 / 16;
   border-radius: var(--radius);
   overflow: hidden;
   border: 1px solid var(--hairline);
@@ -381,7 +396,7 @@ p {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   z-index: 2;
 }
 
@@ -685,8 +700,11 @@ p {
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1024px) {
-  .works__grid {
-    gap: 1.75rem;
+  .works__scroll {
+    gap: 1.5rem;
+  }
+  .project {
+    width: clamp(200px, 28vw, 280px);
   }
 }
 
@@ -698,9 +716,13 @@ p {
     display: flex;
   }
 
-  .works__grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  .works__scroll {
+    gap: 1.25rem;
+    padding: 0 var(--gutter);
+  }
+
+  .project {
+    width: clamp(180px, 42vw, 260px);
   }
 
   .section-head {

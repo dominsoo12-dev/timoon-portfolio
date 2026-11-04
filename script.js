@@ -1,6 +1,11 @@
 // TIMOON. — Portfolio interactions
 // Vanilla JS only: reveal-on-scroll, active nav link, mobile menu.
 
+import { inject } from '@vercel/analytics';
+
+// Initialize Vercel Web Analytics
+inject();
+
 const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* ---------- Reveal on scroll ---------- */
